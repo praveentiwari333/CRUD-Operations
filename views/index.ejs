@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-Chats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h3 style="color:whitesmoke;margin-left: 37rem;">All Chats</h3>
+    <form method="get" action="/chats/new">
+        <button style="margin-left: 37rem;"><b>New Chat</b></button>
+    </form>
+    <br>
+    <hr>
+    <%for(let chat of chats){%>
+        <div class="chat">
+            <p><i>From:</i><b><%=chat.from%> </b></p>
+            <div class="msg">
+            <p><i><%=chat.msg%></i></p>
+            <form method="get" action="/chats/<%=chat._id%>/edit">
+                <button><b>EDIT</b></button>
+            </form>
+            <br>
+            <form method="post" action="/chats/<%=chat._id%>?_method=DELETE">
+                    <button><b>DELETE</b></button>
+          </form>
+          <br>
+          <!-- <form method="get" action="/chats/<%=chat._id%>">
+            <button>Show</button>
+          </form>  -->
+            </div>
+            <p><i>Received By:</i><b><%=chat.to%></b></p>
+            <hr>
+            <p><%=chat.created_at.toString().split(" ")[4]%></p>
+            <p><%=chat.created_at.toString().split(" ").slice(0,4).join("-")%></p>
+        </div>
+    <%}%>
+</body>
+</html>
+
